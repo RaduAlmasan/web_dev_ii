@@ -1,0 +1,25 @@
+<html>
+
+<body>
+    Hello there! 
+    <br>
+    This is Radu ALmasan! 
+    <br>
+    Ajax Demo (A)
+    <div id="demo"> This is replacable text </div>
+<button type="button" onclick="update()">Change text </button>
+</body>
+
+<script>
+    function update() {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if ((this.readyState == 4) && (this.status == 200)){
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "sample.txt", true);
+        xhttp.send();
+    }
+</script>
+</html>

@@ -1,0 +1,28 @@
+<html>
+
+<Head>>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#changeButton").click(function () {
+            //document.getElementById("demo").innerHTML = "This is some new text";
+            //$("#demo").text("Hi this is some more JQuery loaded text...")
+            $("#demo").load("sample.txt")
+        });      
+    });
+    </script>
+</Head>
+<body>
+    Hello there! 
+    <br>
+    This is Radu ALmasan! 
+    <br>
+    Ajax Demo (J)
+    <div id="demo"> This is replacable text </div>
+<button type="button" id ="changeButton">Change text </button>
+</body>
+
+<script>
+    
+</script>
+</html>
