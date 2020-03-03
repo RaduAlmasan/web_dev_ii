@@ -1,0 +1,49 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="thumbnails" class="w3-sidebar w3-bar-block w3-light-grey" style="width:15%">
+    </div>
+    <div class="w3-panel w3-pale-green" style="margin-left:15%">
+        <div id="full-size-picture" class="w3-panel w3-pale-green" >
+        <h2></h2>
+    </div>
+</body>
+<script>
+function format_thumbnail(key, val) {
+    img = '<img src="' + val + '" alt="' + key + '" style="width:100%"/>';
+    caption = '<div class="w3-container w3-center"><p>' + key + '</p></div>';
+    card = '<div id="' + val + '" class="thumbnail w3-card-4">' + img + caption + '</div>';
+    return card;
+}
+$(document).ready(function() {
+    $.getJSON("images.json", function(data) {
+        var items = [];
+        $.each( data, function( key, val ) {
+            items.push(format_thumbnail(key, val));
+        });
+        html = items.join("")
+        $("#thumbnails").html(html)
+        $(".thumbnail").click( function() {
+            id = $(this).attr("id")
+            img = '<img src="' + id + '" alt="'+id+'" style="width:100%"/>';
+            $("#full-size-picture").html(img);
+        });
+    });
+});
+    // $("#changebutton").click(function() {
+    //         $.getJSON("images.json", function(data) {
+    //             var items = [];
+    //             $.each( data, function( key, val ) {
+    //                 items.push(format_item(key, val));
+    //             });
+    //             html = items.join("")
+    //             $("#thumbnails").html(html)
+    //         });
+    //     });
+    // });
+</script>
+</html>

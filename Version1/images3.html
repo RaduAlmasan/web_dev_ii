@@ -1,0 +1,54 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Title</h1>
+    <div class="w3-row">
+        <div id = thumbnails class="w3-panel w3-pale-blue w3-col s3" >
+        </div>
+        <div class="w3-panel w3-pale-green w3-col s9">
+            Big pictures
+        </div>
+    </div>
+</body>
+
+<script>
+function format_item(key,val){
+    return "<li id='" + key + "'><b>" + val + "</b></li>";
+}
+$(document).ready(function() {
+            $.getJSON("images.json", function(data) {
+                var items = [];
+                $.each( data, function( key, val ) {
+                    items.push(format_item(key, val));
+                });
+                html = items.join("")
+                $("#thumbnails").html(html) 
+                //$( "<ul/>", {
+                //    "class": "my-new-list",
+                //    html: html
+                //}).appendTo("#demo");
+            });
+        });
+    //$("#changebutton").click(function() {
+      //      $.getJSON("images.json", function(data) {
+        //        var items = [];
+          //      $.each( data, function( key, val ) {
+            //        items.push(format_item(key, val));
+              //  });
+                //html = items.join("")
+                //$("#thumbnails").html(html) 
+                //$( "<ul/>", {
+                //    "class": "my-new-list",
+                //    html: html
+                //}).appendTo("#demo");
+       //     });
+     //   });
+   // });
+</script>
+
+</html>
+

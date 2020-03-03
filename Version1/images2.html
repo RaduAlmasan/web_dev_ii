@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="demo">Hello...</div>
+<button type="button" id="changebutton">Change Text</button>
+</body>
+<script>
+$(document).ready(function() {
+    $("#changebutton").click(function() {
+            $.getJSON("images.json", function(data) {
+                var items = [];
+                $.each( data, function( key, val ) {
+                    items.push( "<li id='" + key + "'>" + val + "</li>" );
+                });
+                html = items.join("")
+                $("#demo").html(html) 
+                //$( "<ul/>", {
+                //    "class": "my-new-list",
+                //    html: html
+                //}).appendTo("#demo");
+            });
+        });
+    });
+</script>
+</html>
+
