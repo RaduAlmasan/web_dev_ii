@@ -3,15 +3,24 @@ import os
 from flask import Flask, send_from_directory
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello World'
-
-@app.route('/api/images_list/<int:number>')
+app.route('/api/images_list/<int:number>')
 def images_list(number):
-    image_files = os.listdir("static/images")
-    print(image_files)
-    return send_from_directory("api", "images.json")
+    image_files = sorted(os.listdir("static/images"))
+    image_files = [ f for f in image_files if ".jpeg" in f ]
+    image_entries = [ '"' + f + '":"images/' + f + '"' for f in image_files ]
+    image_json = "{" + ",".join(image_entries) + "}"
+    return image_json
+
+
+
+@app.route('/index.html', methods=['GET'])
+@app.route('/', methods=['GET'])
+def index_file():
+    return send_from_directory("","index.html")
+
+@app.route('/photos', methods=['GET'])
+def get_photos():
+    return send_from_directory("", "photos.html")
 
 @app.route('/static/<path:path>', methods=['GET'])
 def static_file(path):
